@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 
-@media (min-width: 375px ) {
-  .image-fix {
-    height: auto;
+
+
+  span .image-fix {
+    height: auto !important;
   }
-}
+
 
 @media (min-width: 768px) {
-     .image-fix {
-      height: 250px;
+     span   .image-fix {
+      height: 250px !important;
   }
 }
 
 @media (min-width: 1024px ) {
-     .image-fix {
-      height: 300px;
+    span .image-fix {
+      height: 300px !important;
   }
 }
 
