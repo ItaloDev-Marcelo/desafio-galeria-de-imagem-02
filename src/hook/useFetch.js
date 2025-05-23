@@ -6,22 +6,34 @@ export default function useFetch() {
       const [apiData, setApiData] = useState([]);
     
     
-      useEffect(() => {
-        async function FetchData() {
-          try {
-            const response = await fetch("/api/v2/list");
-            const data = await response.json();
-            if (!data) throw new Error("Data lost")
-            if(data) { 
-            setApiData(data);
-            }
-          } catch (e) {
-            console.log(e);
-             setApiData([]);
-          }
-        }
-        FetchData();
-      }, []);
+    useEffect(() => {
+  async function FetchData() {
+    try {
+      const response = await fetch("/api/v2/list");
+
+      if (!response.ok) {
+        throw new Error(`Erro na resposta: ${response.status}`);
+      }
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const data = await response.json();
+        setApiData(data);
+      } else {
+        const texto = await response.text();
+        console.warn("Resposta não é JSON:", texto);
+        setApiData([]);
+      }
+
+    } catch (e) {
+      console.error("Erro ao buscar dados:", e.message);
+      setApiData([]);
+    }
+  }
+
+  FetchData();
+}, []);
+
     
 
       return {
