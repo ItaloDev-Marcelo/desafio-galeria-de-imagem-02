@@ -9,7 +9,7 @@ export default function useFetch() {
     useEffect(() => {
   async function FetchData() {
     try {
-      const response = await fetch("https://desafio-galeria-de-imagem-02.vercel.app/api/v2/list");
+      const response = await fetch("https://picsum.photos/v2/list?page=2&limit=32");
 
       if (!response.ok) {
         throw new Error(`Erro na resposta: ${response.status}`);

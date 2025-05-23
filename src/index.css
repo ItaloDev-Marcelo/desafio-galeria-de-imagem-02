@@ -3,20 +3,28 @@
 
 
 
-  span .image-fix {
-    height: auto !important;
+  .image-fix {
+    height: auto ;
   }
 
 
 @media (min-width: 768px) {
-     span   .image-fix {
-      height: 250px !important;
+     .image-fix {
+      height: 250px ;
   }
 }
 
 @media (min-width: 1024px ) {
-    span .image-fix {
-      height: 300px !important;
+    .image-fix {
+      height: 300px ;
   }
 }
+
+
+@media (min-width: 1440px ) {
+    .image-fix {
+      height: 400px ;
+  }
+}
+
 

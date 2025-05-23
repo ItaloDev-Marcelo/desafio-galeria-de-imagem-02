@@ -24,7 +24,7 @@ export default function Layout() {
               </select>
               <button></button>
            </form>
-             <section className="grid grid-cols-1  md:grid-cols-3 gap-7 mt-7  md:gap-3">
+             <section className="grid grid-cols-1  md:grid-cols-3 xl:grid-cols-4 gap-7 mt-7  md:gap-3">
                {
                 apiData.map((item) => {
                   return  <Card key={item.id} id={item.id} author={item.author} url={item.download_url}   />
