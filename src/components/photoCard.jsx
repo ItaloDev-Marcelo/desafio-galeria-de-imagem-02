@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 
 export default function Card({ id, author, url }) {
  
-  const {handleId, selectPhoto} = useContext(AppContext);
+  const {handleId} = useContext(AppContext);
 
 
 
