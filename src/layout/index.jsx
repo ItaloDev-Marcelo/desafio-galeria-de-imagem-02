@@ -1,49 +1,73 @@
 import Card from "../components/photoCard";
 import useFetch from "../hook/useFetch"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import PhotoDisplay from "../components/photosDisplay";
-
- 
-
 
 
 export default function Layout() {
 
     const {apiData} = useFetch();
+    const [showTime,setShowTime] = useState('all')
+    const [searchValue, setSearchValue] = useState('')
 
-      const {selectPhoto, display} = useContext(AppContext);
+      const {display, myFavouities} = useContext(AppContext);
 
-      console.log(selectPhoto, display)
+      const selectOption = (value) => {
+         setShowTime(value) 
+      }
 
-      
+      const  Search = () =>  {
+           setShowTime(searchValue  ===  'todos' ? 'all' : 'favoritos' ) 
+      }
+
+       const newOptions = () => {   
+        Search() 
+      }
 
     return (
         <section className="flex flex-col md:flex-row p-7">
           <section className="flex flex-col md:flex-row flex-wrap ">
       
-             <form className=" m-2 lg:mx-10 lg:mb-2 lg:mt-2 w-full">
+             <div className="self-start lg:mb-2 lg:mt-2 w-full">
                <legend className="text-2xl lg:text-5xl font-bold my-4 lg:my-7">Tiny Galery</legend>
-              <input type="text" placeholder="⌕ Busca por autor" className="w-full px-2 lg:px-4 py-2 border-2"/>
-              <select id="opcao" name="opcao" className="mt-4">
-                
+               <label className="relative">
+                    <input type="text"
+                     placeholder="⌕ Busca por autor"
+                     value={searchValue}
+                     onKeyDown={newOptions}
+                     onChange={(e) => setSearchValue(e.target.value) }
+                      className="w-full px-2 lg:px-4 py-2 border-2"/>
+               </label>
+              <select onChange={(e) => selectOption(e.target.value)}  id="opcao" name="opcao" className="mt-4">
                  <option value='' disabled>Filtro</option>
-                 <option value='Alejandro'>Alejandro Escamilla</option>
-                 <option value='Aleks'>Aleks Dorohovich</option>
-                 <option value='Vadim'>Vadim Sherbakov</option>
-                 <option value='Yoni'>Yoni Kaplan-Nadel</option>
-                 <option value='Jerry'>Jerry Adney</option>
-                 <option value='Go'>Go Wild</option>
-                 <option value='Paul'>Paul Jarvis</option>
+                 <option value='all'>Todos</option>
+                 <option value='favoritos'>Favoritos</option>
               </select>
-              <button></button>
-           </form>
+             
+           </div>
              <section className="grid grid-cols-1  md:grid-cols-3 xl:grid-cols-4 gap-7 mt-7  md:gap-3">
+               
                {
+                 showTime === 'all'  ?  <>
+                  {
                 apiData.map((item) => {
                   return  <Card key={item.id} id={item.id} author={item.author} url={item.download_url}   />
                 })
                }
+               </> :  <>
+                   {
+                
+                 myFavouities.map((item) => {
+                  return  <Card key={item.id} id={item.id} author={item.author} url={item.download_url}   />
+                })
+               }
+               </>
+               }
+
+              
+
+             
 
              <div className='flex lg:hidden'>
                  {
@@ -67,3 +91,5 @@ export default function Layout() {
         </section>
     )
 }
+
+
