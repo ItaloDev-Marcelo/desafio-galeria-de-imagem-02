@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
+   legend {
+    color: rgba(191, 191, 191, 0.69);
+   }
 
+   select {
+    background: rgba(191, 191, 191, 0.69);
+    border-radius: 5px;
+   }
 
 
   .image-fix {
