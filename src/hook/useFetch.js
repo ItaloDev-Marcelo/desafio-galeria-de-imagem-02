@@ -10,7 +10,6 @@ export default function useFetch() {
   async function FetchData() {
     try {
       const response = await fetch("/api/v2/list");
-
       if (!response.ok) {
         throw new Error(`Erro na resposta: ${response.status}`);
       }

@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
+   legend {
+    color: rgba(191, 191, 191, 0.69);
+   }
 
+   select {
+    background: rgba(191, 191, 191, 0.69);
+    border-radius: 5px;
+   }
 
-
-  span .image-fix {
+  .image-fix {
     height: auto !important;
   }
 
@@ -20,13 +26,13 @@
 
 
 @media (min-width: 768px) {
-     span   .image-fix {
+     .image-fix {
       height: 250px !important;
   }
 }
 
 @media (min-width: 1024px ) {
-    span .image-fix {
+    .image-fix {
       height: 300px !important;
   }
 }
